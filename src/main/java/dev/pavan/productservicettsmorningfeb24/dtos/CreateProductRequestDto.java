@@ -13,7 +13,7 @@ public class CreateProductRequestDto {
     private String description;
     private String category;
     private double price;
-    //private Long userId;
+
 }
 
 //DTO for each request so that in future
