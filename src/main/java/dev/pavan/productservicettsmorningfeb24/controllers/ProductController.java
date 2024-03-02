@@ -12,6 +12,7 @@ public class ProductController {
     private ProductService productService;
 
     public ProductController(ProductService productService){
+
         this.productService = productService;
     }
 
@@ -40,6 +41,10 @@ public class ProductController {
     public void updateProduct(){
 
 
+    }
+    @DeleteMapping("/products/{id}")
+    public Product deleteProduct(@PathVariable("id") Long deleteId){
+        return productService.deleteProduct(deleteId);
     }
 
 }

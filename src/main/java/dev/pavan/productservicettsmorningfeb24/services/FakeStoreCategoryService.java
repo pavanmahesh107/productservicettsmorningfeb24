@@ -16,7 +16,6 @@ public class FakeStoreCategoryService implements CategoryService{
         this.restTemplate = restTemplate;
     }
 
-
     @Override
     public Category getSpecificCategory(String category) {
 
