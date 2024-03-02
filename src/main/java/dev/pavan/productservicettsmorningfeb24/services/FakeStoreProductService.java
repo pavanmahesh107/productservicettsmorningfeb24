@@ -55,11 +55,16 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public Product deleteProduct(Long deleteId) {
+    public Product deleteProduct(Long productId) {
 
-        FakeStoreProductDto fakeStoreProduct = restTemplate.getForObject("https://fakestoreapi.com/products/" + deleteId,
+        //Product oneProduct = getSingleProduct(productId);
+        //Product deleted = new Product();
+
+        FakeStoreProductDto fakeStoreProduct = restTemplate.getForObject("https://fakestoreapi.com/products/" + productId,
                 FakeStoreProductDto.class
         );
         return fakeStoreProduct.toProduct();
     }
+
+
 }
