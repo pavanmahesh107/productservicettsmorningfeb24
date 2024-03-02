@@ -66,5 +66,13 @@ public class FakeStoreProductService implements ProductService{
         return fakeStoreProduct.toProduct();
     }
 
+    @Override
+    public Product updateProduct(Long productId) {
 
+
+        FakeStoreProductDto fakeStoreProduct = restTemplate.getForObject("https://fakestoreapi.com/products/" + productId,
+                FakeStoreProductDto.class
+        );
+        return fakeStoreProduct.toProduct();
+    }
 }
