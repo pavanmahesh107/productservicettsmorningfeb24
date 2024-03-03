@@ -17,8 +17,8 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/categories/{category}")
-    public Category getSpecificProductCategory(@PathVariable("category") String category){
-                return categoryService.getSpecificCategory(category);
+    @GetMapping("/categories/{name}")
+    public Category getSpecificProductCategory(@PathVariable("name") String name){
+                return (Category) categoryService.getSpecificProductCategory(name);
     }
 }

@@ -15,7 +15,7 @@ public class FakeStoreProductService implements ProductService{
 
     private RestTemplate restTemplate;
 
-    public FakeStoreProductService(RestTemplate restTemplate) {
+    public FakeStoreProductService(RestTemplate restTemplate) { 
 
         this.restTemplate = restTemplate;
     }
@@ -74,5 +74,10 @@ public class FakeStoreProductService implements ProductService{
                 FakeStoreProductDto.class
         );
         return fakeStoreProduct.toProduct();
+    }
+
+    @Override
+    public List<Product> getAllProduct() {
+        return null;
     }
 }

@@ -5,6 +5,8 @@ import dev.pavan.productservicettsmorningfeb24.models.Product;
 import dev.pavan.productservicettsmorningfeb24.services.ProductService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ProductController {
 
@@ -33,8 +35,8 @@ public class ProductController {
 
     }
     @GetMapping("/products")
-    public void getAllProduct(){
-
+    public List<Product> getAllProduct(){
+           return productService.getAllProduct();
 
     }
     @PutMapping("/products/{id}")
@@ -44,7 +46,11 @@ public class ProductController {
     }
     @DeleteMapping("/products/{id}")
     public Product deleteProduct(@PathVariable("id") Long productId){
+
         return productService.deleteProduct(productId);
     }
+
+   // @GetMapping("/products")
+    //public void getAllProducts(@PathVariable())
 
 }

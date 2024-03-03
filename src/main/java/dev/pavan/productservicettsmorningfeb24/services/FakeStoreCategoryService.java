@@ -6,6 +6,8 @@ import dev.pavan.productservicettsmorningfeb24.models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service
 public class FakeStoreCategoryService implements CategoryService{
 
@@ -16,12 +18,17 @@ public class FakeStoreCategoryService implements CategoryService{
         this.restTemplate = restTemplate;
     }
 
-    @Override
+   /* @Override
     public Category getSpecificCategory(String category) {
 
              FakeStoreCategoryDto fakeStoreCategory = restTemplate.getForObject("https://fakestoreapi.com/products/category/" + category,
                                                     FakeStoreCategoryDto.class
         );
         return fakeStoreCategory.toCategory();
+    }*/
+
+    @Override
+    public List<Product> getSpecificProductCategory(String name) {
+        return null;
     }
 }
