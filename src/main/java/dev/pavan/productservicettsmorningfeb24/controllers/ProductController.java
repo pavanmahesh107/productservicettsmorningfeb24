@@ -55,6 +55,10 @@ public class ProductController {
         return productService.getAllCategories();
     }
 
+    @GetMapping("/products/category/{categories}")
+    public List<Product> getParticularCategory(@PathVariable("categories") String categoryName){
 
+                return productService.getParticularCategory(categoryName);
+    }
 
 }

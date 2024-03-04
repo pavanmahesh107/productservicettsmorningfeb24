@@ -21,4 +21,6 @@ public interface ProductService {
     Product updateProduct(Long productId);
 
     List<String> getAllCategories();
+
+    List<Product> getParticularCategory(String category);
 }

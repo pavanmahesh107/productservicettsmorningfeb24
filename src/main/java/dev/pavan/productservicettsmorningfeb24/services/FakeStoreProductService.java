@@ -91,7 +91,6 @@ public class FakeStoreProductService implements ProductService {
     }
 
 
-
     @Override
     public List<String> getAllCategories() {
         ResponseEntity<String[]> responseEntity = restTemplate.getForEntity(
@@ -106,5 +105,22 @@ public class FakeStoreProductService implements ProductService {
 
         return Collections.emptyList();
     }
+
+    @Override
+    public List<Product> getParticularCategory(String category) {
+        ResponseEntity<Product[]> responseEntity = restTemplate.getForEntity(
+                "https://fakestoreapi.com/products/category/" + category, Product[].class);
+
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+            Product[] products = responseEntity.getBody();
+            if (products != null) {
+                return Arrays.asList(products);
+            }
+        }
+
+        return Collections.emptyList();
+    }
+
 }
+
 
