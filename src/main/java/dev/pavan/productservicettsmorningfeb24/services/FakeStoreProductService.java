@@ -2,36 +2,53 @@ package dev.pavan.productservicettsmorningfeb24.services;
 
 import dev.pavan.productservicettsmorningfeb24.dtos.FakeStoreProductDto;
 import dev.pavan.productservicettsmorningfeb24.models.Product;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-public class FakeStoreProductService implements ProductService{
+public class FakeStoreProductService implements ProductService {
     //Rest Template
     //This class allows to send HTTP Request to external URLs
     //and get responses.
 
     private RestTemplate restTemplate;
 
-    public FakeStoreProductService(RestTemplate restTemplate) { 
+    public FakeStoreProductService(RestTemplate restTemplate) {
 
         this.restTemplate = restTemplate;
     }
+
     @Override
     public Product getSingleProduct(Long productId) {
 
         FakeStoreProductDto fakeStoreProduct = restTemplate.getForObject("https://fakestoreapi.com/products/" + productId,
                 FakeStoreProductDto.class
-                );
+        );
         return fakeStoreProduct.toProduct();
     }
 
     @Override
-    public List<Product> getProducts() {
-        return null;
+    public List<Product> getAllProducts() {
+        ResponseEntity<Product[]> responseEntity = restTemplate.getForEntity(
+                "https://fakestoreapi.com/products", Product[].class);
+
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+            Product[] products = responseEntity.getBody();
+            if (products != null) {
+                return Arrays.asList(products);
+            }
+        }
+
+        return Collections.emptyList();
     }
+
 
     @Override
     public Product createProduct(String title,
@@ -57,9 +74,6 @@ public class FakeStoreProductService implements ProductService{
     @Override
     public Product deleteProduct(Long productId) {
 
-        //Product oneProduct = getSingleProduct(productId);
-        //Product deleted = new Product();
-
         FakeStoreProductDto fakeStoreProduct = restTemplate.getForObject("https://fakestoreapi.com/products/" + productId,
                 FakeStoreProductDto.class
         );
@@ -76,8 +90,21 @@ public class FakeStoreProductService implements ProductService{
         return fakeStoreProduct.toProduct();
     }
 
+
+
     @Override
-    public List<Product> getAllProduct() {
-        return null;
+    public List<String> getAllCategories() {
+        ResponseEntity<String[]> responseEntity = restTemplate.getForEntity(
+                "https://fakestoreapi.com/products/categories", String[].class);
+
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+            String[] categories = responseEntity.getBody();
+            if (categories != null) {
+                return Arrays.asList(categories);
+            }
+        }
+
+        return Collections.emptyList();
     }
 }
+

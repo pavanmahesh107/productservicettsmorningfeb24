@@ -8,7 +8,7 @@ public interface ProductService {
 
     Product getSingleProduct(Long productId);
 
-    List<Product> getProducts();
+    List<Product> getAllProducts();
 
     Product createProduct(String title,
                           String description,
@@ -20,5 +20,5 @@ public interface ProductService {
 
     Product updateProduct(Long productId);
 
-    List<Product> getAllProduct();
+    List<String> getAllCategories();
 }

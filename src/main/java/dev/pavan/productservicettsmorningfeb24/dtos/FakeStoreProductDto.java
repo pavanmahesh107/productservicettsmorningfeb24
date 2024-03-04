@@ -31,4 +31,9 @@ public class FakeStoreProductDto {
 
         return product;
     }
+    public Category toCategory(){
+        Category productCategory = new Category();
+        productCategory.setTitle(category);
+        return  productCategory;
+    }
 }

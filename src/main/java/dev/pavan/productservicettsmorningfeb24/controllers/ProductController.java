@@ -35,8 +35,8 @@ public class ProductController {
 
     }
     @GetMapping("/products")
-    public List<Product> getAllProduct(){
-           return productService.getAllProduct();
+    public List<Product> getAllProducts(){
+           return productService.getAllProducts();
 
     }
     @PutMapping("/products/{id}")
@@ -50,7 +50,11 @@ public class ProductController {
         return productService.deleteProduct(productId);
     }
 
-   // @GetMapping("/products")
-    //public void getAllProducts(@PathVariable())
+    @GetMapping("/products/categories")
+    public List<String> getAllCategories(){
+        return productService.getAllCategories();
+    }
+
+
 
 }
